@@ -1,0 +1,118 @@
+/*
+ * Design tokens. Every colour, radius, easing and duration used in the app comes from here.
+ * Theme values are CSS variables so dark mode is a variable swap, not a class rewrite.
+ */
+@font-face {
+  font-family: 'Geist';
+  src: url('../assets/fonts/geist-latin-wght.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Metric-matched fallback so the swap to Geist causes no layout shift. */
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Liberation Sans');
+  size-adjust: 102%;
+  ascent-override: 94%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --bg: #efefef;
+  --surface: #ffffff;
+  --ink: #0b0b0b;
+  --ink-soft: #1c1c1c;
+  /* Darkened from #8A8A8A to reach 4.5:1 on --bg (WCAG AA). */
+  --muted: #696969;
+  --line: #e6e6e6;
+  --accent: #c6f432;
+  --on-accent: #0b0b0b;
+  --on-ink: #ffffff;
+  --glass: rgb(255 255 255 / 0.7);
+  --shadow-color: rgb(0 0 0 / 0.12);
+
+  --dur-micro: 180ms;
+  --dur-ui: 500ms;
+  --dur-hero: 1000ms;
+  --dur-page: 550ms;
+  --stagger: 60ms;
+  --hero-delay: 900ms;
+
+  color-scheme: light;
+}
+
+:root.dark {
+  --bg: #0d0d0d;
+  --surface: #171717;
+  --ink: #f2f2f2;
+  --ink-soft: #e2e2e2;
+  --muted: #a0a0a0;
+  --line: #2a2a2a;
+  --on-ink: #0b0b0b;
+  --glass: rgb(23 23 23 / 0.7);
+  --shadow-color: rgb(0 0 0 / 0.5);
+
+  color-scheme: dark;
+}
+
+/* Repeat visitors skip the preloader, so the hero starts immediately. */
+:root.returning {
+  --hero-delay: 120ms;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-on-ink: var(--on-ink);
+  --color-glass: var(--glass);
+}
+
+@theme {
+  --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(2.25rem, 1.5rem + 3.2vw, 4.5rem);
+  --text-display--line-height: 0.96;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 600;
+  --text-h2: clamp(1.625rem, 1.25rem + 1.6vw, 2.75rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.02em;
+  --text-stat: clamp(1.875rem, 1.5rem + 1.4vw, 2.75rem);
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.04em;
+  --text-body: clamp(0.875rem, 0.85rem + 0.15vw, 0.975rem);
+  --text-body--line-height: 1.55;
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.08em;
+
+  --radius-card: 0.5rem;
+  --shadow-soft: 0 4px 20px -6px var(--shadow-color);
+  --shadow-lift: 0 12px 32px -8px var(--shadow-color);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+
+  --container-site: 85rem;
+}

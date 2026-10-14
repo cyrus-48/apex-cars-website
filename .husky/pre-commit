@@ -1,0 +1,2 @@
+pnpm lint-staged
+node scripts/check-file-length.mjs

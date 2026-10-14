@@ -1,0 +1,209 @@
+/*
+ * Motion system. Only transform, opacity, clip-path and (rarely) filter are animated.
+ * Everything that moves on its own lives inside `no-preference`, so reduced-motion users
+ * get the final state instantly. `.js` is set by an inline script, so content stays
+ * visible when JavaScript is off.
+ */
+@property --pct {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes mask-up {
+  from {
+    transform: translate3d(0, 110%, 0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+}
+
+@keyframes hero-scale {
+  from {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.92);
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes count-up {
+  to {
+    --pct: 100;
+  }
+}
+
+@keyframes cover-out {
+  to {
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes vt-old {
+  to {
+    opacity: 0;
+    transform: translate3d(0, -32px, 0) scale(0.98);
+  }
+}
+
+@keyframes vt-new {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+/* Preloader: a pure-CSS counter so it runs before hydration and never waits on JS. */
+.preloader-count {
+  counter-reset: pct var(--pct);
+}
+
+.preloader-count::after {
+  content: counter(pct);
+}
+
+html:not(.js) .preloader,
+.returning .preloader {
+  display: none;
+}
+
+/* Marquee track structure (motion applied below). */
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .preloader {
+    animation: cover-out 650ms var(--ease-in-out) 750ms forwards;
+  }
+
+  .preloader-count {
+    animation: count-up 750ms var(--ease-out) forwards;
+  }
+
+  /* SplitText words: mask reveal with 60ms stagger. */
+  .js .split-word > span {
+    animation: mask-up var(--dur-hero) var(--ease-out) both;
+    animation-delay: calc(var(--split-delay, var(--hero-delay)) + var(--i, 0) * var(--stagger));
+  }
+
+  .js .enter-up {
+    animation: fade-up var(--dur-hero) var(--ease-out) both;
+    animation-delay: calc(var(--hero-delay) + 200ms + var(--i, 0) * 90ms);
+  }
+
+  .js .hero-image {
+    animation: hero-scale 1400ms var(--ease-out) both;
+    animation-delay: calc(var(--hero-delay) - 400ms);
+  }
+
+  .js .hero-callout {
+    animation: pop-in var(--dur-ui) var(--ease-out) both;
+    animation-delay: calc(var(--hero-delay) + 600ms + var(--i, 0) * 140ms);
+  }
+
+  .js .hero-line {
+    animation: draw 700ms var(--ease-in-out) both;
+    animation-delay: calc(var(--hero-delay) + 500ms + var(--i, 0) * 140ms);
+  }
+
+  /* Scroll reveals (IntersectionObserver adds .is-in once). */
+  .js .reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity var(--dur-ui) var(--ease-out),
+      transform var(--dur-hero) var(--ease-out);
+    transition-delay: calc(var(--i, 0) * var(--stagger));
+  }
+
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .marquee-track {
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+  }
+
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  ::view-transition-old(root) {
+    animation: vt-old var(--dur-page) var(--ease-in-out) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: vt-new var(--dur-page) var(--ease-in-out) both;
+  }
+}
+
+/* Header stays put during page transitions instead of being wiped with the page. */
+.site-header {
+  view-transition-name: site-header;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+}
+
+/* Vue <Transition> classes shared by swaps (callouts, tab panels, filters). */
+.swap-enter-active,
+.swap-leave-active {
+  transition:
+    opacity var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+}
+
+.swap-enter-from {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+}
+
+.swap-leave-to {
+  opacity: 0;
+  transform: translate3d(0, -10px, 0);
+}
+
+/* FLIP grid filtering (TransitionGroup). */
+.grid-move,
+.grid-enter-active,
+.grid-leave-active {
+  transition:
+    opacity var(--dur-ui) var(--ease-out),
+    transform var(--dur-ui) var(--ease-out);
+}
+
+.grid-enter-from,
+.grid-leave-to {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.grid-leave-active {
+  position: absolute;
+}
