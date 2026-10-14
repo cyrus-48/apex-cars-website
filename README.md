@@ -2,27 +2,27 @@
   <img src="docs/assets/github-hero-mockup.jpg" alt="Apex Cars — Digital Experience Mockup" width="100%" />
 </p>
 
-<h1 align="center">⚡ Apex Cars — Electric Performance</h1>
+<h1 align="center">Apex Cars — Frontend Showcase</h1>
 
 <p align="center">
-  <strong>The official web platform and digital experience for Apex Cars — Swedish high-performance electric vehicles engineered for the edge.</strong>
+  <strong>A personal front-end design & motion experiment exploring modern automotive web design, kinetic scroll interactions, and Scandinavian minimalism.</strong>
 </p>
 
 <p align="center">
-  <a href="#-tech-stack"><img src="https://img.shields.io/badge/Vue.js-3.5-4FC08D?style=flat-square&logo=vue.js&logoColor=white" alt="Vue 3.5" /></a>
-  <a href="#-tech-stack"><img src="https://img.shields.io/badge/Vite-8.0-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 8.0" /></a>
-  <a href="#-tech-stack"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5.9" /></a>
-  <a href="#-tech-stack"><img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS v4" /></a>
-  <a href="#-tech-stack"><img src="https://img.shields.io/badge/GSAP-3.14-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP" /></a> 
+  <a href="#tech-stack"><img src="https://img.shields.io/badge/Vue.js-3.5-4FC08D?style=flat-square&logo=vue.js&logoColor=white" alt="Vue 3.5" /></a>
+  <a href="#tech-stack"><img src="https://img.shields.io/badge/Vite-8.0-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 8.0" /></a>
+  <a href="#tech-stack"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5.9" /></a>
+  <a href="#tech-stack"><img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS v4" /></a>
+  <a href="#tech-stack"><img src="https://img.shields.io/badge/GSAP-3.14-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP" /></a> 
 </p>
 
 ---
 
-## 🏎️ Overview
+## Overview
 
-**Apex Cars** (founded 2014 in Gothenburg, Sweden) builds dual-motor 900V SiC electric grand tourers and track vehicles delivering up to 1,150 HP with 94.8% battery circularity.
+This repository is a **personal frontend showcase and motion design project**. _Apex Cars_ is a fictional automotive concept created to test and demonstrate modern web animation techniques, micro-interactions, responsive typography, and strict frontend engineering standards.
 
-This repository houses the brand's primary digital flagship — an editorial, motion-rich, static-site-generated web application built to mirror the precision engineering of Scandinavian automotive craft.
+The goal was to craft a luxury, editorial-grade web experience that feels fast, tactile, and visually cohesive across both mobile and desktop screens.
 
 <p align="center">
   <img src="docs/assets/github-thumbnail.jpg" alt="Apex Cars Responsive Showcase" width="90%" />
@@ -30,17 +30,17 @@ This repository houses the brand's primary digital flagship — an editorial, mo
 
 ---
 
-## ✨ Key Highlights
+## Key Highlights
 
-- **Scandinavian Editorial Design System:** Sleek, modern geometry with tight micro-radii (`rounded-lg` / 8px), tailored typography hierarchy (Geist Sans & Mono), HSL tokens, and a luminous Swedish racing lime accent (`#C6F432`).
+- **Editorial Design System:** Sleek, modern geometry with tight micro-radii (`rounded-lg` / 8px), tailored typography hierarchy (Geist Sans & Mono), HSL tokens, and a vibrant racing lime accent (`#C6F432`).
 - **Kinetic Motion Architecture:**
   - **Lenis Smooth Scroll:** Hardware-accelerated inertial scrolling synchronized directly with GSAP's RAF ticker.
   - **ScrollTrigger Choreography:** Parallax vehicle staging, scrubbed speed telemetry counters, interactive 3D card perspective tilt, and magnetic navigation buttons.
   - **Desktop Custom Cursor:** Physics-spring cursor with magnetic element snap and automatic touch-screen deactivation.
 - **Responsive Navigation:**
-  - Sticky frosted header bar (`backdrop-blur-md`) with real-time route pill indicator tracking.
+  - Sticky frosted header bar (`backdrop-blur-md`) with real-time route pill indicator tracking that never blocks page content.
   - Full-screen animated mobile drawer menu with zero content clipping or obstruction.
-- **Enterprise Engineering Discipline:**
+- **Engineering Discipline:**
   - **Zero file sprawl:** Strict CI enforcement limiting every file to $\le 250$ lines (`check-file-length.mjs`).
   - **Static Site Generation (SSG):** Fully pre-rendered routes via `vite-ssg` with instantaneous client hydration.
   - **PWA & Offline Capability:** Service worker caching, manifest, Brotli compression, and web app installability.
@@ -48,7 +48,7 @@ This repository houses the brand's primary digital flagship — an editorial, mo
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Domain                | Technology                                                                    | Rationale                                                              |
 | --------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -63,7 +63,7 @@ This repository houses the brand's primary digital flagship — an editorial, mo
 
 ---
 
-## 📂 Architecture & Directory Structure
+## Architecture & Directory Structure
 
 ```
 apex-cars/
@@ -74,7 +74,7 @@ apex-cars/
 │   └── check-file-length.mjs  # Enforces strict 250-line limit across all files
 ├── src/
 │   ├── app/                   # App root, Vue Router, Pinia stores
-│   ├── assets/images/         # High-resolution automotive photography assets
+│   ├── assets/images/         # Automotive photography assets
 │   ├── components/
 │   │   ├── layout/            # AppHeader, NavPills, MobileMenu, AppFooter, CustomCursor
 │   │   ├── motion/            # ParallaxImage, RevealItem, SplitText
@@ -92,7 +92,7 @@ apex-cars/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -122,9 +122,9 @@ Visit `http://localhost:5173` to explore the site in your browser.
 
 ---
 
-## 🧪 Testing & Verification
+## Testing & Verification
 
-Apex Cars enforces automated quality checks covering code formatting, strict TypeScript types, file sizes, and behavior tests:
+Automated quality checks covering code formatting, strict TypeScript types, file sizes, and behavior tests:
 
 ```bash
 # Run all checks (file lengths, ESLint, vue-tsc, and Vitest)
@@ -142,7 +142,7 @@ npm run build
 
 ---
 
-## 🎨 Design System Primitives (`/kit`)
+## Design System Primitives (`/kit`)
 
 Explore the live component playground by navigating to `/kit` in your browser. Primitives include:
 
@@ -154,12 +154,12 @@ Explore the live component playground by navigating to `/kit` in your browser. P
 
 ---
 
-## 📄 License
+## License
 
 Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 
 <p align="center">
-  <sub>Engineered with precision in Gothenburg, Sweden. Designed for the edge.</sub>
+  <sub>Personal frontend showcase project. Designed & built for high-performance web experiences.</sub>
 </p>
